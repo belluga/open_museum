@@ -1,4 +1,4 @@
-package com.example.open_museum
+package com.belluga.openmuseum
 
 import io.flutter.embedding.android.FlutterActivity
 
