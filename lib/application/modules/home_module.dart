@@ -1,4 +1,5 @@
 import 'package:moduler_route/moduler_route.dart';
+import 'package:open_museum/presentation/home/controller/home_screen_controller.dart';
 import 'package:open_museum/presentation/home/controller/splash_screen_controller.dart';
 import 'package:open_museum/presentation/home/home_screen.dart';
 import 'package:open_museum/presentation/home/splash_screen.dart';
@@ -30,6 +31,9 @@ class HomeModule extends Module {
   List<Injector> get injections => [
         Injector<SplashScreenController>(
           inject: (arguments) => SplashScreenController(),
+        ),
+        Injector<HomeScreenController>(
+          inject: (arguments) => HomeScreenController(),
         ),
       ];
 }

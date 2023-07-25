@@ -3,7 +3,9 @@ import 'package:appwrite/models.dart';
 import 'package:open_museum/application/configs/appwrite_constants.dart';
 import 'package:open_museum/domain/repository/connect_repository_contract.dart';
 
-class ConnectRepositoryAppwrite extends ConnectRepositoryContract {
+class ConnectRepositoryAppwrite extends ConnectRepositoryContract<Client> {
+  
+  @override
   final Client client = Client();
 
   ConnectRepositoryAppwrite() {

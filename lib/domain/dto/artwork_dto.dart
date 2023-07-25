@@ -5,7 +5,7 @@ import 'package:open_museum/domain/dto/place_dto.dart';
 
 class ArtworkDTO {
   final String name;
-  final PlaceDTO place;
+  final PlaceDTO? place;
   final String? description;
   final List<AuthorDTO> authors;
   final List<PhotoDTO> photos;
@@ -33,15 +33,15 @@ class ArtworkDTO {
   }
 
   factory ArtworkDTO.fromJson(Map<String, dynamic> json) {
-    final String _name = json['name'];
-    final String? _description = json['description'];
-    final PlaceDTO _place = PlaceDTO.fromJson(json["place"]);
+    final String _name = json['data']['name'];
+    final String? _description = json['data']['description'];
+    final PlaceDTO? _place = PlaceDTO.fromJsonTry(json['data']["places"]);
 
     final List<PhotoDTO> _photos =
-        (json['photos'] as List).map((e) => PhotoDTO.fromJson(e)).toList();
+        (json['data']['photos'] as List).map((e) => PhotoDTO.fromJson(e)).toList();
 
     final List<AuthorDTO> _authors =
-        (json['authors'] as List).map((e) => AuthorDTO.fromJson(e)).toList();
+        (json['data']['authors'] as List).map((e) => AuthorDTO.fromJson(e)).toList();
 
     return ArtworkDTO(
       name: _name,

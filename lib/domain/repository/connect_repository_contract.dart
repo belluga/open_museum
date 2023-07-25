@@ -1,4 +1,7 @@
-abstract class ConnectRepositoryContract {
+abstract class ConnectRepositoryContract<T> {
+
+  T get client;
+
   Future<void> init() async {
     await initClient();
   }
