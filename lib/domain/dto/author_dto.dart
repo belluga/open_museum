@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:open_museum/domain/dto/donation_method.dart';
-import 'package:open_museum/domain/dto/social_network.dart';
+import 'package:open_museum/domain/dto/donation_method_dto.dart';
+import 'package:open_museum/domain/dto/social_network_dto.dart';
 
 class AuthorDTO {
   final String id;

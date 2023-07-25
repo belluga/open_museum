@@ -40,6 +40,12 @@ dependencies:
       url: https://github.com/belluga/stream_value.git
       ref: v0.0.3
 
+  value_objects:
+    # path: ../packages/value_objects
+    git:
+      url: https://github.com/belluga/value_objects.git
+      ref: v0.0.2  
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
