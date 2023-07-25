@@ -4,6 +4,7 @@ import 'package:open_museum/domain/dto/photo_dto.dart';
 import 'package:open_museum/domain/dto/place_dto.dart';
 
 class ArtworkDTO {
+  final String id;
   final String name;
   final PlaceDTO? place;
   final String? description;
@@ -11,6 +12,7 @@ class ArtworkDTO {
   final List<PhotoDTO> photos;
 
   ArtworkDTO({
+    required this.id,
     required this.name,
     required this.place,
     required this.photos,
@@ -33,17 +35,24 @@ class ArtworkDTO {
   }
 
   factory ArtworkDTO.fromJson(Map<String, dynamic> json) {
-    final String _name = json['data']['name'];
-    final String? _description = json['data']['description'];
-    final PlaceDTO? _place = PlaceDTO.fromJsonTry(json['data']["places"]);
+
+    print("json");
+    print(json);
+    
+    final String _id = json["\$id"];
+    final String _name = json['name'] ?? json['data']['name'];
+    final String? _description =
+        json['description'] ?? json['data']['description'];
+    final PlaceDTO? _place =
+        PlaceDTO.fromJsonTry(json["place"] ?? json['data']["place"]);
 
     final List<PhotoDTO> _photos =
-        (json['data']['photos'] as List).map((e) => PhotoDTO.fromJson(e)).toList();
-
+        PhotoDTO.fromJsonListTry(json["data"]?["photos"]);
     final List<AuthorDTO> _authors =
-        (json['data']['authors'] as List).map((e) => AuthorDTO.fromJson(e)).toList();
+        AuthorDTO.fromJsonListTry(json["data"]?["authors"]);
 
     return ArtworkDTO(
+      id: _id,
       name: _name,
       description: _description,
       photos: _photos,

@@ -25,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Center(
         child: StreamValueBuilder<List<ArtWorkModel>>(
           streamValue: _controller.artworkStreamValue,
-          onNullWidget: Text("Nenhum encontrado próximo."),
+          onNullWidget: const Text("Nenhum encontrado próximo."),
           builder: (context, state) => Column(
             children: List.generate(
                 state.length,

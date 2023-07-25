@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
 class PlaceDTO {
+  final String id;
   final double latitude;
   final double longitude;
 
   PlaceDTO({
+    required this.id,
     required this.latitude,
     required this.longitude,
   });
@@ -24,10 +26,12 @@ class PlaceDTO {
   }
 
   factory PlaceDTO.fromJson(Map<String, dynamic> json) {
-    final double _latitude = double.parse(json['latitude']);
-    final double _longitude = double.parse(json['longitude']);
+    final String _id = json["\$id"];
+    final double _latitude = json['latitude'] ?? json['data']['latitude'];
+    final double _longitude = json['longitude'] ?? json['data']['longitude'];
 
     return PlaceDTO(
+      id: _id,
       latitude: _latitude,
       longitude: _longitude,
     );

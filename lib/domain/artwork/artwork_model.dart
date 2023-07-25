@@ -12,7 +12,7 @@ class ArtWorkModel {
 
   factory ArtWorkModel.fromDTO(ArtworkDTO dto) {
     return ArtWorkModel(
-      documentID: "wwewe",
+      documentID: dto.id,
     );
   }
 }
