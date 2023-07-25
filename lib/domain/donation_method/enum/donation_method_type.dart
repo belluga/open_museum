@@ -1,0 +1,4 @@
+enum DonationMethodType {
+  paypal,
+  pix,
+}

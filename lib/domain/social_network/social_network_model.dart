@@ -26,6 +26,9 @@ class SocialNetworkModel {
     }
   }
 
+  factory SocialNetworkModel.fromJson(Map<String, dynamic> json) =>
+      SocialNetworkModel.fromDTO(SocialNetworkDTO.fromJson(json));
+
   factory SocialNetworkModel.fromDTO(SocialNetworkDTO dto) {
     final _objectIDValue = AppwriteObjectIDValue()..doParse(dto.id);
     final _typeValue = SocialNetworkTypeValue()..doParse(dto.type);
