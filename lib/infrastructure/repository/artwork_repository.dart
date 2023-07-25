@@ -1,16 +1,14 @@
 import 'package:appwrite/appwrite.dart';
 import 'package:appwrite/models.dart';
 import 'package:flutter/material.dart';
-import 'package:moduler_route/moduler_route.dart';
 import 'package:open_museum/application/configs/appwrite_constants.dart';
 import 'package:open_museum/domain/artwork/artwork_model.dart';
-import 'package:open_museum/domain/repository/connect_repository_contract.dart';
-import 'package:open_museum/domain/repository/repository_paginated_contract.dart';
+import 'package:open_museum/domain/repository/repository_paginated_appwrite_contract.dart';
 
-class ArtworkRepository extends RepositoryPaginatedContract<ArtWorkModel> {
+class ArtworkRepository
+    extends RepositoryPaginatedAppwriteContract<ArtWorkModel> {
+  @override
   final String collectionID = "64bb04ce52fd8bdd2f9c";
-  final int perPageDocuments = 10;
-  final _connect = Inject.get<ConnectRepositoryContract<Client>>()!;
 
   @override
   ArtWorkModel? getItemByID(String itemID) => itemsStreamValue.value
@@ -19,7 +17,7 @@ class ArtworkRepository extends RepositoryPaginatedContract<ArtWorkModel> {
   @override
   Future<List<ArtWorkModel>> getItemsNew({int page = 1}) async {
     final DocumentList _documentList =
-        await Databases(_connect.client).listDocuments(
+        await Databases(connect.client).listDocuments(
       databaseId: AppWriteConstants.databaseID,
       collectionId: collectionID,
       queries: [
