@@ -6,7 +6,6 @@ import 'package:open_museum/domain/dto/place_dto.dart';
 class ArtworkDTO {
   final String id;
   final String name;
-  final PlaceDTO? place;
   final String? description;
   final List<AuthorDTO> authors;
   final List<PhotoDTO> photos;
@@ -14,11 +13,24 @@ class ArtworkDTO {
   ArtworkDTO({
     required this.id,
     required this.name,
-    required this.place,
     required this.photos,
     required this.authors,
     this.description,
   });
+
+  static List<ArtworkDTO> fromJsonListTry(List? jsonList) {
+    if (jsonList == null || jsonList.isEmpty) {
+      return List<ArtworkDTO>.empty();
+    }
+
+    try {
+      return jsonList.map((e) => ArtworkDTO.fromJson(e)).toList();
+    } catch (e, s) {
+      debugPrint(e.toString());
+      debugPrintStack(stackTrace: s);
+      return List<ArtworkDTO>.empty();
+    }
+  }
 
   static ArtworkDTO? fromJsonTry(Map<String, dynamic>? json) {
     if (json == null) {
@@ -35,13 +47,10 @@ class ArtworkDTO {
   }
 
   factory ArtworkDTO.fromJson(Map<String, dynamic> json) {
-    
     final String _id = json["\$id"];
     final String _name = json['name'] ?? json['data']['name'];
     final String? _description =
         json['description'] ?? json['data']['description'];
-    final PlaceDTO? _place =
-        PlaceDTO.fromJsonTry(json["place"] ?? json['data']["place"]);
 
     final List<PhotoDTO> _photos =
         PhotoDTO.fromJsonListTry(json["data"]?["photos"]);
@@ -53,7 +62,6 @@ class ArtworkDTO {
       name: _name,
       description: _description,
       photos: _photos,
-      place: _place,
       authors: _authors,
     );
   }

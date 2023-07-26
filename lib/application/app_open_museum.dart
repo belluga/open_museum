@@ -4,7 +4,7 @@ import 'package:moduler_route/moduler_route.dart';
 import 'package:open_museum/application/modules/home_module.dart';
 import 'package:open_museum/domain/repository/auth_repository_contract.dart';
 import 'package:open_museum/domain/repository/connect_repository_contract.dart';
-import 'package:open_museum/infrastructure/repository/artwork_repository.dart';
+import 'package:open_museum/infrastructure/repository/places_repository.dart';
 import 'package:open_museum/infrastructure/repository/auth_repository.dart';
 import 'package:open_museum/infrastructure/repository/location_repository.dart';
 
@@ -40,8 +40,8 @@ class AppOpenMuseum extends StatelessWidget with Moduler {
         Injector<AuthRepositoryContract>(
           inject: (arguments) => AuthRepository(),
         ),
-        Injector<ArtworkRepository>(
-          inject: (arguments) => ArtworkRepository(),
+        Injector<PlacesRepository>(
+          inject: (arguments) => PlacesRepository(),
         ),
         Injector<LocationRepository>(
           inject: (arguments) => LocationRepository(),

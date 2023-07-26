@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:location/location.dart';
 import 'package:moduler_route/moduler_route.dart';
-import 'package:open_museum/domain/artwork/artwork_model.dart';
+import 'package:open_museum/domain/place/place_model.dart';
 import 'package:open_museum/presentation/home/controller/home_screen_controller.dart';
 import 'package:open_museum/presentation/home/widgets/max_distance_selector.dart';
 import 'package:stream_value/core/stream_value_builder.dart';
@@ -27,26 +27,29 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: SafeArea(
         child: Center(
-          child: StreamValueBuilder<List<ArtWorkModel>>(
-            streamValue: _controller.artworkStreamValue,
+          child: StreamValueBuilder<List<PlaceModel>>(
+            streamValue: _controller.placesStreamValue,
             onNullWidget: const Text("Nenhum encontrado próximo."),
-            builder: (context, state) => Column(
+            builder: (context, placesState) => Column(
               children: [
                 StreamValueBuilder<LocationData?>(
                     streamValue: _controller.locationStreamValue,
-                    builder: (context, state) {
+                    builder: (context, locationState) {
                       return Row(
                         children: [
                           Column(
                             children: [
                               Container(
-                                child: Text(state?.latitude.toString() ?? ""),
+                                child: Text(
+                                    locationState?.latitude.toString() ?? ""),
                               ),
                               Container(
-                                child: Text(state?.longitude.toString() ?? ""),
+                                child: Text(
+                                    locationState?.longitude.toString() ?? ""),
                               ),
                               Container(
-                                child: Text(state?.accuracy.toString() ?? ""),
+                                child: Text(
+                                    locationState?.accuracy.toString() ?? ""),
                               ),
                             ],
                           ),
@@ -65,11 +68,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 Expanded(
                   child: Column(
                     children: List.generate(
-                      state.length,
+                      placesState.length,
                       (index) => Card(
                         child: Container(
                           padding: const EdgeInsets.all(16),
-                          child: Text(state[index].objectIDValue.value),
+                          child: Text(placesState[index].objectIDValue.value),
                         ),
                       ),
                     ),

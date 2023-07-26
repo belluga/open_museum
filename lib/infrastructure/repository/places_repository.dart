@@ -4,29 +4,27 @@ import 'package:flutter/material.dart';
 import 'package:location/location.dart';
 import 'package:moduler_route/moduler_route.dart';
 import 'package:open_museum/application/configs/appwrite_constants.dart';
-import 'package:open_museum/domain/artwork/artwork_model.dart';
+import 'package:open_museum/domain/place/place_model.dart';
 import 'package:open_museum/domain/range_model.dart';
 import 'package:open_museum/domain/repository/repository_paginated_appwrite_contract.dart';
 import 'package:open_museum/infrastructure/repository/location_repository.dart';
 
-class ArtworkRepository
-    extends RepositoryPaginatedAppwriteContract<ArtWorkModel> {
-  ArtworkRepository() {
+class PlacesRepository extends RepositoryPaginatedAppwriteContract<PlaceModel> {
+  PlacesRepository() {
     range.maxDistanceStreamValue.stream.listen(_listenMaxDistanceChanges);
     _locationRepository.locationDataStreamValue.stream
         .listen(_listenLocationChanges);
   }
 
   @override
-  final String collectionID = "64bb04ce52fd8bdd2f9c";
+  final String collectionID = "64bb08acdf5d3362f46d";
 
   @override
-  ArtWorkModel? getItemByID(String itemID) => itemsStreamValue.value
+  PlaceModel? getItemByID(String itemID) => itemsStreamValue.value
       ?.firstWhere((element) => element.objectIDValue.value == itemID);
 
   @override
-  Future<List<ArtWorkModel>> getItemsNew({int page = 1}) async {
-
+  Future<List<PlaceModel>> getItemsNew({int page = 1}) async {
     print("getItemsNew");
     print("range.maxDistance");
     print(range.maxDistance);
@@ -50,10 +48,10 @@ class ArtworkRepository
       final List<Map<String, dynamic>> _finalList =
           _documentList.documents.map((e) => e.toMap()).toList();
 
-      final List<ArtWorkModel> _artworkItems =
-          _finalList.map((e) => ArtWorkModel.fromJson(e)).toList();
+      final List<PlaceModel> _placeItems =
+          _finalList.map((e) => PlaceModel.fromJson(e)).toList();
 
-      return Future.value(_artworkItems);
+      return Future.value(_placeItems);
     } catch (e, stack) {
       debugPrint(e.toString());
       debugPrintStack(stackTrace: stack);
