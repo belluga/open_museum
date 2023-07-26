@@ -6,6 +6,7 @@ import 'package:open_museum/domain/repository/auth_repository_contract.dart';
 import 'package:open_museum/domain/repository/connect_repository_contract.dart';
 import 'package:open_museum/infrastructure/repository/artwork_repository.dart';
 import 'package:open_museum/infrastructure/repository/auth_repository.dart';
+import 'package:open_museum/infrastructure/repository/location_repository.dart';
 
 class AppOpenMuseum extends StatelessWidget with Moduler {
   final ConnectRepositoryContract<Client> connectRepository;
@@ -41,6 +42,9 @@ class AppOpenMuseum extends StatelessWidget with Moduler {
         ),
         Injector<ArtworkRepository>(
           inject: (arguments) => ArtworkRepository(),
+        ),
+        Injector<LocationRepository>(
+          inject: (arguments) => LocationRepository(),
         ),
       ];
 }
