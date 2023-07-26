@@ -15,7 +15,36 @@ class HomeScreenController {
   StreamValue<LocationData?> get locationStreamValue =>
       _locationRepository.locationDataStreamValue;
 
+  StreamValue<PermissionStatus?> get permissionStatusStreamValue =>
+      _locationRepository.permissionStatusStreamValue;
+
+  bool get permissionGranted {
+    switch (permissionStatusStreamValue.value) {
+      case PermissionStatus.granted:
+      case PermissionStatus.grantedLimited:
+        return true;
+      case PermissionStatus.denied:
+      case PermissionStatus.deniedForever:
+      default:
+        return false;
+    }
+  }
+
+  Future<void> init() async {
+    await initLocation();
+    if (permissionGranted) {
+      await initArtworks();
+    }
+  }
+
   Future<void> initLocation() async {
     await _locationRepository.init();
   }
+
+  Future<void> initArtworks() async {
+    await _artworkRepository.init();
+  }
+
+  void setMacDistance(int? newDistance) =>
+      _artworkRepository.setMaxDistance(newDistance);
 }

@@ -2,9 +2,7 @@ import 'package:stream_value/core/stream_value.dart';
 import 'package:flutter/material.dart';
 
 abstract class RepositoryPaginatedContract<T> {
-  RepositoryPaginatedContract() {
-    init();
-  }
+  RepositoryPaginatedContract();
 
   final itemsStreamValue = StreamValue<List<T>?>();
 
@@ -15,7 +13,6 @@ abstract class RepositoryPaginatedContract<T> {
 
   Future<void> getNextPage() async => await getPage(page: nextPage);
 
-  @protected
   Future<void> init() async => await getPage();
 
   @protected
