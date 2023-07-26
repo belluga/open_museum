@@ -50,9 +50,15 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                             ],
                           ),
-                          MaxDistanceSelector(
-                            onChanged: _controller.setMacDistance,
-                          ),
+                          StreamValueBuilder<double>(
+                              streamValue:
+                                  _controller.range.maxDistanceStreamValue,
+                              builder: (context, state) {
+                                return MaxDistanceSelector(
+                                  currentValue: state.ceil(),
+                                  onChanged: _controller.setMacDistance,
+                                );
+                              }),
                         ],
                       );
                     }),

@@ -1,17 +1,20 @@
 import 'package:appwrite/appwrite.dart';
 import 'package:appwrite/models.dart';
 import 'package:flutter/material.dart';
+import 'package:location/location.dart';
 import 'package:moduler_route/moduler_route.dart';
 import 'package:open_museum/application/configs/appwrite_constants.dart';
 import 'package:open_museum/domain/artwork/artwork_model.dart';
+import 'package:open_museum/domain/range_model.dart';
 import 'package:open_museum/domain/repository/repository_paginated_appwrite_contract.dart';
 import 'package:open_museum/infrastructure/repository/location_repository.dart';
-import 'package:stream_value/core/stream_value.dart';
 
 class ArtworkRepository
     extends RepositoryPaginatedAppwriteContract<ArtWorkModel> {
   ArtworkRepository() {
-    _maxDistanceStreamValue.stream.listen(_listenMaxDistanceChanges);
+    range.maxDistanceStreamValue.stream.listen(_listenMaxDistanceChanges);
+    _locationRepository.locationDataStreamValue.stream
+        .listen(_listenLocationChanges);
   }
 
   @override
@@ -23,6 +26,11 @@ class ArtworkRepository
 
   @override
   Future<List<ArtWorkModel>> getItemsNew({int page = 1}) async {
+
+    print("getItemsNew");
+    print("range.maxDistance");
+    print(range.maxDistance);
+
     final DocumentList _documentList =
         await Databases(connect.client).listDocuments(
       databaseId: AppWriteConstants.databaseID,
@@ -30,6 +38,8 @@ class ArtworkRepository
       queries: [
         Query.limit(perPageDocuments),
         Query.offset(perPageDocuments * (page - 1)),
+
+        //TODO: Query with values
       ],
     );
 
@@ -53,28 +63,18 @@ class ArtworkRepository
 
   final _locationRepository = Inject.get<LocationRepository>()!;
 
-  final int _maxDistanceDefault = 10;
-  double get _maxDistanceInGrades =>
-      _maxDistanceStreamValue.value.toDouble() * 0.0095;
-  double get _currentLat =>
-      _locationRepository.locationDataStreamValue.value?.latitude ?? 0;
-  double get _latMax => _currentLat + _maxDistanceInGrades;
-  double get _latMin => _currentLat - _maxDistanceInGrades;
-
-  double get _currentLong =>
-      _locationRepository.locationDataStreamValue.value?.longitude ?? 0;
-  double get _longMax => _currentLong + _maxDistanceInGrades;
-  double get _longMin => _currentLong - _maxDistanceInGrades;
-
-  final _maxDistanceStreamValue = StreamValue<int>(defaultValue: 10);
+  final range = RangeModel();
 
   void setMaxDistance(int? newDistance) =>
-      _maxDistanceStreamValue.addValue(newDistance ?? _maxDistanceDefault);
+      range.setMaxDistance(newDistance!.toDouble());
 
-  Future<void> _listenMaxDistanceChanges(int maxDistance) async =>
+  Future<void> _listenMaxDistanceChanges(double maxDistance) async =>
       await getItemsNew();
 
+  void _listenLocationChanges(LocationData? locationData) async =>
+      range.setCurrentPlace(locationData);
+
   void dispose() {
-    _maxDistanceStreamValue.dispose();
+    range.dispose();
   }
 }
