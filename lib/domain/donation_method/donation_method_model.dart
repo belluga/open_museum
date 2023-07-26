@@ -1,7 +1,7 @@
 import 'package:open_museum/domain/appwrite/value_objects/appwrite_object_id_value.dart';
-import 'package:open_museum/domain/donation_method/value_objetcs/donation_method_key_type_value.dart';
-import 'package:open_museum/domain/donation_method/value_objetcs/donation_method_key_value.dart';
-import 'package:open_museum/domain/donation_method/value_objetcs/donation_method_type_value.dart';
+import 'package:open_museum/domain/donation_method/value_objects/donation_method_key_type_value.dart';
+import 'package:open_museum/domain/donation_method/value_objects/donation_method_key_value.dart';
+import 'package:open_museum/domain/donation_method/value_objects/donation_method_type_value.dart';
 import 'package:open_museum/domain/dto/donation_method_dto.dart';
 
 class DonationMethodModel {

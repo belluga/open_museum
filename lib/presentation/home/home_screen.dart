@@ -30,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
             children: List.generate(
                 state.length,
                 (index) => Container(
-                      child: Text(state[index].documentID),
+                      child: Text(state[index].objectIDValue.value),
                     )),
           ),
         ),

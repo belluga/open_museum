@@ -35,9 +35,6 @@ class ArtworkDTO {
   }
 
   factory ArtworkDTO.fromJson(Map<String, dynamic> json) {
-
-    print("json");
-    print(json);
     
     final String _id = json["\$id"];
     final String _name = json['name'] ?? json['data']['name'];

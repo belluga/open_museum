@@ -12,7 +12,7 @@ class ArtworkRepository
 
   @override
   ArtWorkModel? getItemByID(String itemID) => itemsStreamValue.value
-      ?.firstWhere((element) => element.documentID == itemID);
+      ?.firstWhere((element) => element.objectIDValue.value == itemID);
 
   @override
   Future<List<ArtWorkModel>> getItemsNew({int page = 1}) async {
