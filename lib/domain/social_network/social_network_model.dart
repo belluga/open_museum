@@ -30,9 +30,9 @@ class SocialNetworkModel {
       SocialNetworkModel.fromDTO(SocialNetworkDTO.fromJson(json));
 
   factory SocialNetworkModel.fromDTO(SocialNetworkDTO dto) {
-    final _objectIDValue = AppwriteObjectIDValue()..doParse(dto.id);
-    final _typeValue = SocialNetworkTypeValue()..doParse(dto.type);
-    final _usernameValue = SocialNetworkUsernameValue()..doParse(dto.username);
+    final _objectIDValue = AppwriteObjectIDValue()..parse(dto.id);
+    final _typeValue = SocialNetworkTypeValue()..tryParse(dto.type);
+    final _usernameValue = SocialNetworkUsernameValue()..tryParse(dto.username);
 
     return SocialNetworkModel(
       objectIDValue: _objectIDValue,

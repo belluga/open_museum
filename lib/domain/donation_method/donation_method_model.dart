@@ -21,12 +21,12 @@ class DonationMethodModel {
       DonationMethodModel.fromDTO(DonationMethodDTO.fromJson(json));
 
   factory DonationMethodModel.fromDTO(DonationMethodDTO dto) {
-    final _objectIDValue = AppwriteObjectIDValue()..doParse(dto.id);
+    final _objectIDValue = AppwriteObjectIDValue()..parse(dto.id);
     final _typeValue = DonationMethodTypeValue(defaultValue: null)
-      ..doParse(dto.type);
+      ..tryParse(dto.type);
     final _keyTypeValue = DonationMethodKeyTypeValue(defaultValue: null)
-      ..doParse(dto.keyType);
-    final _keyValue = DonationMethodKeyValue()..doParse(dto.key);
+      ..tryParse(dto.keyType);
+    final _keyValue = DonationMethodKeyValue()..tryParse(dto.key);
 
     return DonationMethodModel(
       objectIDValue: _objectIDValue,

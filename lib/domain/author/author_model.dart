@@ -27,7 +27,7 @@ class AuthorModel {
       AuthorModel.fromDTO(AuthorDTO.fromJson(json));
 
   factory AuthorModel.fromDTO(AuthorDTO dto) {
-    final _objectIDValue = AppwriteObjectIDValue()..doParse(dto.id);
+    final _objectIDValue = AppwriteObjectIDValue()..parse(dto.id);
     final _nameValue = AuthorNameValue()..parse(dto.name);
     final _websiteValue = AuthorWebsiteValue()..tryParse(dto.website);
     final _bioValue = AuthorBioValue()..tryParse(dto.bio);

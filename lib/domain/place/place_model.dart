@@ -18,11 +18,11 @@ class PlaceModel {
       PlaceModel.fromDTO(PlaceDTO.fromJson(json));
 
   factory PlaceModel.fromDTO(PlaceDTO dto) {
-    final _objectIDValue = AppwriteObjectIDValue()..doParse(dto.id);
+    final _objectIDValue = AppwriteObjectIDValue()..parse(dto.id);
     final _latitudeValue = LatitudeValue(defaultValue: dto.latitude)
-      ..validate(dto.latitude.toString());
+      ..parse(dto.latitude.toString());
     final _longitudeValue = LongitudeValue(defaultValue: dto.longitude)
-      ..validate(dto.longitude.toString());
+      ..parse(dto.longitude.toString());
 
     return PlaceModel(
       objectIDValue: _objectIDValue,

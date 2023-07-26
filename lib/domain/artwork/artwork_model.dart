@@ -36,8 +36,8 @@ class ArtWorkModel {
     }
 
     return ArtWorkModel(
-      objectIDValue: AppwriteObjectIDValue()..doParse(dto.id),
-      nameValue: ArtworkNameValue()..doParse(dto.name),
+      objectIDValue: AppwriteObjectIDValue()..parse(dto.id),
+      nameValue: ArtworkNameValue()..parse(dto.name),
       descriptionValue: ArtworkDescriptionValue()..tryParse(dto.description),
       place: _place,
       authors: dto.authors.map((dto) => AuthorModel.fromDTO(dto)).toList(),

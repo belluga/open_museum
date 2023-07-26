@@ -28,10 +28,14 @@ class _HomeScreenState extends State<HomeScreen> {
           onNullWidget: const Text("Nenhum encontrado próximo."),
           builder: (context, state) => Column(
             children: List.generate(
-                state.length,
-                (index) => Container(
-                      child: Text(state[index].objectIDValue.value),
-                    )),
+              state.length,
+              (index) => Card(
+                child: Container(
+                  padding: const EdgeInsets.all(16),
+                  child: Text(state[index].objectIDValue.value),
+                ),
+              ),
+            ),
           ),
         ),
       ),
