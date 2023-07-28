@@ -8,6 +8,7 @@ class ArtistDTO {
   final String? bio;
   final String? website;
   final String? store;
+  final String? avatar;
   final List<DonationMethodDTO> donationMethods;
   final List<SocialNetworkDTO> socialNetworks;
 
@@ -19,6 +20,7 @@ class ArtistDTO {
     this.bio,
     this.website,
     this.store,
+    this.avatar,
   });
 
   static List<ArtistDTO> fromJsonListTry(List? jsonList) {
@@ -55,6 +57,7 @@ class ArtistDTO {
     final String? _bio = json['bio'] ?? json['data']?['bio'];
     final String? _website = json['website'] ?? json['data']?['website'];
     final String? _store = json['store'] ?? json['data']?['store'];
+    final String? _avatar = json['avatar'] ?? json['data']?['avatar'];
 
     final List<DonationMethodDTO> _donationMethods =
         DonationMethodDTO.fromJsonListTry(json["data"]?["donationMethods"]);
@@ -70,6 +73,7 @@ class ArtistDTO {
       socialNetworks: _socialNetworks,
       website: _website,
       store: _store,
+      avatar: _avatar,
     );
   }
 }
