@@ -11,7 +11,7 @@ class ArtWorkModel {
   final ArtworkNameValue nameValue;
   final ArtworkDescriptionValue descriptionValue;
   final ArtworkDistanceValue distanceValue;
-  final List<ArtistModel> authors;
+  final List<ArtistModel> artists;
   final List<ArtworkPhotoValue> photos;
 
   ArtWorkModel({
@@ -19,7 +19,7 @@ class ArtWorkModel {
     required this.nameValue,
     required this.distanceValue,
     required this.descriptionValue,
-    required this.authors,
+    required this.artists,
     required this.photos,
   });
 
@@ -32,7 +32,7 @@ class ArtWorkModel {
       nameValue: ArtworkNameValue()..parse(dto.name),
       distanceValue: ArtworkDistanceValue(defaultValue: dto.distance),
       descriptionValue: ArtworkDescriptionValue()..tryParse(dto.description),
-      authors: dto.authors.map((dto) => ArtistModel.fromDTO(dto)).toList(),
+      artists: dto.authors.map((dto) => ArtistModel.fromDTO(dto)).toList(),
       photos: dto.photos.map((dto) => ArtworkPhotoValue()..parse(dto)).toList(),
     );
   }

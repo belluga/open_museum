@@ -5,7 +5,7 @@ import 'package:open_museum/domain/dto/social_network_dto.dart';
 class ArtistDTO {
   final String id;
   final String name;
-  final String alias;
+  final String? alias;
   final String? bio;
   final String? website;
   final String? store;
@@ -16,9 +16,9 @@ class ArtistDTO {
   ArtistDTO({
     required this.id,
     required this.name,
-    required this.alias,
     required this.donationMethods,
     required this.socialNetworks,
+    this.alias,
     this.bio,
     this.website,
     this.store,
@@ -56,7 +56,7 @@ class ArtistDTO {
   factory ArtistDTO.fromJson(Map<String, dynamic> json) {
     final String _id = json["_id"];
     final String _name = json['name'];
-    final String _alias = json['alias'];
+    final String? _alias = json['alias'];
     final String? _bio = json['bio'];
     final String? _website = json['website'];
     final String? _store = json['store'];

@@ -1,3 +1,11 @@
-import 'package:value_objects/domain/value_objects/generic_string_value.dart';
+import 'package:value_objects/value_object.dart';
 
-class ArtistAliasValue extends GenericStringValue {}
+class ArtistAliasValue extends ValueObject<String?> {
+  ArtistAliasValue({
+    super.defaultValue,
+    super.isRequired = false,
+  });
+
+  @override
+  String? doParse(String? parseValue) => parseValue;
+}

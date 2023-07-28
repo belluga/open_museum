@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:open_museum/application/common/artists_row.dart';
 import 'package:open_museum/domain/artwork/artwork_model.dart';
 
 class ArtworkCard extends StatelessWidget {
@@ -63,8 +64,14 @@ class ArtworkCard extends StatelessWidget {
               ],
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                Expanded(
+                  child: ArtistsRow(
+                    artists: artwork.artists,
+                  ),
+                ),
                 Chip(
                   label: Text(artwork.distanceValue.valueFormated),
                 ),

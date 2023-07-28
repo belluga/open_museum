@@ -38,7 +38,7 @@ class ArtistModel {
   factory ArtistModel.fromDTO(ArtistDTO dto) {
     final _objectIDValue = AppwriteObjectIDValue()..parse(dto.id);
     final _nameValue = ArtistNameValue()..parse(dto.name);
-    final _aliasValue = ArtistAliasValue()..parse(dto.alias);
+    final _aliasValue = ArtistAliasValue()..tryParse(dto.alias);
     final _websiteValue = ArtistWebsiteValue()..tryParse(dto.website);
     final _avatarValue = ArtistAvatarValue()..tryParse(dto.avatar);
     final _storeValue = ArtistStoreValue()..tryParse(dto.store);
