@@ -27,62 +27,65 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: SafeArea(
         child: Center(
-          child: StreamValueBuilder<List<ArtWorkModel>>(
-            streamValue: _controller.placesStreamValue,
-            onNullWidget: const Text("Nenhum encontrado próximo."),
-            builder: (context, placesState) => Column(
-              children: [
-                StreamValueBuilder<LocationData?>(
-                    streamValue: _controller.locationStreamValue,
-                    builder: (context, locationState) {
-                      return Row(
+          child: Column(
+            children: [
+              StreamValueBuilder<LocationData?>(
+                streamValue: _controller.locationStreamValue,
+                builder: (context, locationState) {
+                  return Row(
+                    children: [
+                      Column(
                         children: [
-                          Column(
-                            children: [
-                              Container(
-                                child: Text(
-                                    locationState?.latitude.toString() ?? ""),
-                              ),
-                              Container(
-                                child: Text(
-                                    locationState?.longitude.toString() ?? ""),
-                              ),
-                              Container(
-                                child: Text(
-                                    locationState?.accuracy.toString() ?? ""),
-                              ),
-                            ],
+                          Container(
+                            child:
+                                Text(locationState?.latitude.toString() ?? ""),
                           ),
-                          StreamValueBuilder<int>(
-                              streamValue: _controller.maxDistanceStreamValue,
-                              builder: (context, state) {
-                                return MaxDistanceSelector(
-                                  currentValue: state.ceil(),
-                                  onChanged: (int? newDistance) {
-                                    if (newDistance != null) {
-                                      _controller.setMaxDistance(newDistance);
-                                    }
-                                  },
-                                );
-                              }),
+                          Container(
+                            child:
+                                Text(locationState?.longitude.toString() ?? ""),
+                          ),
+                          Container(
+                            child:
+                                Text(locationState?.accuracy.toString() ?? ""),
+                          ),
                         ],
-                      );
-                    }),
-                Expanded(
-                  child: Column(
-                    children: List.generate(
-                      placesState.length,
-                      (index) => Card(
-                        child: Container(
-                          padding: const EdgeInsets.all(16),
-                          child: Text(placesState[index].objectIDValue.value),
+                      ),
+                      StreamValueBuilder<int>(
+                          streamValue: _controller.maxDistanceStreamValue,
+                          builder: (context, state) {
+                            return MaxDistanceSelector(
+                              currentValue: state.ceil(),
+                              onChanged: (int? newDistance) {
+                                if (newDistance != null) {
+                                  _controller.setMaxDistance(newDistance);
+                                }
+                              },
+                            );
+                          }),
+                    ],
+                  );
+                },
+              ),
+              StreamValueBuilder<List<ArtWorkModel>>(
+                streamValue: _controller.placesStreamValue,
+                onNullWidget: const CircularProgressIndicator(),
+                builder: (context, placesState) {
+                  return Expanded(
+                    child: Column(
+                      children: List.generate(
+                        placesState.length,
+                        (index) => Card(
+                          child: Container(
+                            padding: const EdgeInsets.all(16),
+                            child: Text(placesState[index].objectIDValue.value),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ),
-              ],
-            ),
+                  );
+                },
+              ),
+            ],
           ),
         ),
       ),

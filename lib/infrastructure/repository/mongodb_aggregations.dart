@@ -9,10 +9,10 @@ class MongodbAggregations {
         "\$geoNear": {
           "near": {
             "type": "Point",
-            "coordinates": [-20.66927, -40.4926]
+            "coordinates": [longitude, latitude]
           },
           "distanceField": "distance",
-          "maxDistance": 1000000,
+          "maxDistance": maxDistance,
           "spherical": true
         }
       },

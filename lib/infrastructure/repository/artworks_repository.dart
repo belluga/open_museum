@@ -55,7 +55,10 @@ class ArtworksRepository
     final http.Response response =
         await http.post(url, body: json.encode(_data), headers: _headers);
 
-    final List<Map<String, dynamic>> _documentList = (jsonDecode(response.body) as List).map((e) => e as Map<String,dynamic>).toList();
+    final List<Map<String, dynamic>> _documentList =
+        (jsonDecode(response.body) as List)
+            .map((e) => e as Map<String, dynamic>)
+            .toList();
 
     try {
       currentPage = page < totalPages ? page : totalPages;
@@ -77,8 +80,11 @@ class ArtworksRepository
   void setMaxDistance(int newDistance) =>
       maxDistanceStreamValue.addValue(newDistance);
 
-  Future<void> _listenMaxDistanceChanges(int maxDistance) async =>
-      await getItemsNew();
+  Future<void> _listenMaxDistanceChanges(int maxDistance) async {
+    itemsStreamValue.addValue(null);
+    final List<ArtWorkModel> _newData = await getItemsNew();
+    itemsStreamValue.addValue(_newData);
+  }
 
   void dispose() {
     maxDistanceStreamValue.dispose();
