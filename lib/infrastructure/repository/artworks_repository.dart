@@ -27,9 +27,6 @@ class ArtworksRepository
 
   @override
   Future<List<ArtWorkModel>> getItemsNew({int page = 1}) async {
-    print(_locationRepository.locationDataStreamValue.value!.latitude!);
-    print(_locationRepository.locationDataStreamValue.value!.longitude!);
-    print(maxDistanceStreamValue.value);
 
     List<Map<String, Object>> _aggregation =
         MongodbAggregations.artworksByLocation(

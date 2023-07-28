@@ -10,27 +10,37 @@ class LocationRepository {
   final locationDataStreamValue =
       StreamValue<LocationData?>(defaultValue: null);
 
-  Future<void> init() async {
-    await _enableService();
-    await _getPermission();
-    await _getLocation();
+  bool get isPermissionGranted {
+    final PermissionStatus? _currentStatus = permissionStatusStreamValue.value;
+    switch (_currentStatus) {
+      case PermissionStatus.granted:
+      case PermissionStatus.grantedLimited:
+        return true;
+      case PermissionStatus.denied:
+      case PermissionStatus.deniedForever:
+      default:
+        return false;
+    }
   }
 
-  Future<void> _getLocation() async {
+  Future<void> getLocation() async {
+    await _enableService();
     final LocationData _locationData = await location.getLocation();
     locationDataStreamValue.addValue(_locationData);
   }
 
-  Future<void> _getPermission() async {
-    PermissionStatus _permissionStatus = await location.hasPermission();
-    if (_permissionStatus == PermissionStatus.denied) {
-      _permissionStatus = await location.requestPermission();
-      if (_permissionStatus != PermissionStatus.granted) {
-        return;
-      }
-    }
-
+  Future<void> hasPermission() async {
+    final PermissionStatus _permissionStatus = await location.hasPermission();
     permissionStatusStreamValue.addValue(_permissionStatus);
+  }
+
+  Future<void> getPermission() async {
+    await hasPermission();
+    if (isPermissionGranted == false) {
+      final PermissionStatus _newPermissionStatus =
+          await location.requestPermission();
+      permissionStatusStreamValue.addValue(_newPermissionStatus);
+    }
   }
 
   Future<void> _enableService() async {

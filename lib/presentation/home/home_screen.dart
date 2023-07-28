@@ -36,18 +36,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       Column(
                         children: [
-                          Container(
-                            child:
-                                Text(locationState?.latitude.toString() ?? ""),
-                          ),
-                          Container(
-                            child:
-                                Text(locationState?.longitude.toString() ?? ""),
-                          ),
-                          Container(
-                            child:
-                                Text(locationState?.accuracy.toString() ?? ""),
-                          ),
+                          Text(locationState?.latitude.toString() ?? ""),
+                          Text(locationState?.longitude.toString() ?? ""),
+                          Text(locationState?.accuracy.toString() ?? ""),
                         ],
                       ),
                       StreamValueBuilder<int>(

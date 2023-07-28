@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:open_museum/domain/dto/author_dto.dart';
 import 'package:open_museum/domain/dto/photo_dto.dart';
-import 'package:open_museum/domain/dto/place_dto.dart';
 
 class ArtworkDTO {
   final String id;

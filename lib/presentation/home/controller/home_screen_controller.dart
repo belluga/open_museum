@@ -34,17 +34,6 @@ class HomeScreenController {
   }
 
   Future<void> init() async {
-    await initLocation();
-    if (permissionGranted) {
-      await initArtworks();
-    }
-  }
-
-  Future<void> initLocation() async {
-    await _locationRepository.init();
-  }
-
-  Future<void> initArtworks() async {
     await _artworksRepository.init();
   }
 
