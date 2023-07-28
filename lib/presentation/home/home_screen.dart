@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moduler_route/moduler_route.dart';
+import 'package:open_museum/application/common/artists_row.dart';
 import 'package:open_museum/domain/artwork/artwork_model.dart';
 import 'package:open_museum/presentation/home/controller/home_screen_controller.dart';
 import 'package:open_museum/presentation/home/widgets/artwork_card.dart';
@@ -78,15 +79,37 @@ class _HomeScreenState extends State<HomeScreen> {
                       );
                     }
                     return Expanded(
-                      child: SingleChildScrollView(
-                        child: Column(
-                          children: List.generate(
-                            artworksState.length,
-                            (index) => ArtworkCard(
-                              artwork: artworksState[index],
+                      child: Column(
+                        children: [
+                          SizedBox(height: 16),
+                          Row(
+                            children: [
+                              Text("Artistas"),
+                            ],
+                          ),
+                          ArtistsRow(
+                            artists: _controller.artistsAll,
+                            size: 80,
+                          ),
+                          SizedBox(height: 16),
+                          Row(
+                            children: [
+                              Text("Obras"),
+                            ],
+                          ),
+                          Expanded(
+                            child: SingleChildScrollView(
+                              child: Column(
+                                children: List.generate(
+                                  artworksState.length,
+                                  (index) => ArtworkCard(
+                                    artwork: artworksState[index],
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
-                        ),
+                        ],
                       ),
                     );
                   },

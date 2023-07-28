@@ -4,9 +4,10 @@ import 'package:open_museum/domain/artists/artist_model.dart';
 import 'package:open_museum/domain/navigation_arguments/artist_single_arguments.dart';
 
 class ArtistsRow extends StatefulWidget {
+  final double size;
   final List<ArtistModel> artists;
 
-  const ArtistsRow({super.key, required this.artists});
+  const ArtistsRow({super.key, required this.artists, this.size = 32});
 
   @override
   State<ArtistsRow> createState() => _ArtistsRowState();
@@ -43,8 +44,7 @@ class _ArtistsRowState extends State<ArtistsRow> {
     }
 
     return SizedBox(
-      width: 160,
-      height: 32,
+      height: widget.size,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) => InkWell(
@@ -52,10 +52,13 @@ class _ArtistsRowState extends State<ArtistsRow> {
           child: ClipOval(
             child: Image.network(
               widget.artists[index].avatarValue.value.toString(),
-              width: 32,
-              height: 32,
+              width: widget.size,
+              height: widget.size,
               fit: BoxFit.cover,
-              errorBuilder: (_, __, ___) => const Icon(Icons.person, size: 32,),
+              errorBuilder: (_, __, ___) => Icon(
+                Icons.person,
+                size: widget.size,
+              ),
             ),
           ),
         ),

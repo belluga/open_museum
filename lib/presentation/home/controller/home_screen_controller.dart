@@ -1,5 +1,6 @@
 import 'package:location/location.dart';
 import 'package:moduler_route/moduler_route.dart';
+import 'package:open_museum/domain/artists/artist_model.dart';
 import 'package:open_museum/domain/artwork/artwork_model.dart';
 import 'package:open_museum/infrastructure/repository/artworks_repository.dart';
 import 'package:open_museum/infrastructure/repository/location_repository.dart';
@@ -8,6 +9,8 @@ import 'package:stream_value/core/stream_value.dart';
 class HomeScreenController {
   final _artworksRepository = Inject.get<ArtworksRepository>()!;
   final _locationRepository = Inject.get<LocationRepository>()!;
+
+  List<ArtistModel> get artistsAll => _artworksRepository.artistsAll;
 
   StreamValue<List<ArtWorkModel>?> get artworksStreamValue =>
       _artworksRepository.itemsStreamValue;

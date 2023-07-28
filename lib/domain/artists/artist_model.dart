@@ -51,15 +51,25 @@ class ArtistModel {
         .toList();
 
     return ArtistModel(
-      objectIDValue: _objectIDValue,
-      bioValue: _bioValue,
-      donationMethods: _donationMethods,
-      nameValue: _nameValue,
-      aliasValue: _aliasValue,
-      socialNetworks: _socialNetworks,
-      websiteValue: _websiteValue,
-      storeValue: _storeValue,
-      avatarValue: _avatarValue
-    );
+        objectIDValue: _objectIDValue,
+        bioValue: _bioValue,
+        donationMethods: _donationMethods,
+        nameValue: _nameValue,
+        aliasValue: _aliasValue,
+        socialNetworks: _socialNetworks,
+        websiteValue: _websiteValue,
+        storeValue: _storeValue,
+        avatarValue: _avatarValue);
+  }
+
+  @override
+  int get hashCode => Object.hashAll([objectIDValue.value]);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! ArtistModel) return false;
+    ArtistModel otherMyClass = other;
+    return otherMyClass.objectIDValue.value == objectIDValue.value;
   }
 }

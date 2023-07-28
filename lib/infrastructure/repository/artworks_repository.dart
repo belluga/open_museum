@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:moduler_route/moduler_route.dart';
 import 'package:open_museum/application/configs/mongodb_constants.dart';
+import 'package:open_museum/domain/artists/artist_model.dart';
 import 'package:open_museum/domain/artwork/artwork_model.dart';
 import 'package:open_museum/domain/repository/repository_paginated_appwrite_contract.dart';
 import 'package:open_museum/infrastructure/repository/location_repository.dart';
@@ -16,6 +17,23 @@ class ArtworksRepository
     maxDistanceStreamValue.stream.listen(_listenMaxDistanceChanges);
   }
 
+  List<ArtistModel> get artistsAll {
+    final List<ArtWorkModel>? _artowrks = itemsStreamValue.value;
+    final List<ArtistModel> _artists = [];
+
+    if (_artowrks != null) {
+      for (ArtWorkModel item in _artowrks) {
+        for (ArtistModel artist in item.artists) {
+          if (_artists.contains(artist) == false) {
+            _artists.add(artist);
+          }
+        }
+      }
+    }
+
+    return _artists;
+  }
+
   @override
   final String collectionID = "64bb08acdf5d3362f46d";
 
@@ -27,7 +45,6 @@ class ArtworksRepository
 
   @override
   Future<List<ArtWorkModel>> getItemsNew({int page = 1}) async {
-
     List<Map<String, Object>> _aggregation =
         MongodbAggregations.artworksByLocation(
       latitude: _locationRepository.locationDataStreamValue.value!.latitude!,
