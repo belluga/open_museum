@@ -9,11 +9,14 @@ class HomeScreenController {
   final _artworksRepository = Inject.get<ArtworksRepository>()!;
   final _locationRepository = Inject.get<LocationRepository>()!;
 
-  StreamValue<List<ArtWorkModel>?> get placesStreamValue =>
+  StreamValue<List<ArtWorkModel>?> get artworksStreamValue =>
       _artworksRepository.itemsStreamValue;
 
   StreamValue<LocationData?> get locationStreamValue =>
       _locationRepository.locationDataStreamValue;
+
+  StreamValue<String?> get placeStreamValue =>
+      _locationRepository.placeStreamValue;
 
   StreamValue<PermissionStatus?> get permissionStatusStreamValue =>
       _locationRepository.permissionStatusStreamValue;

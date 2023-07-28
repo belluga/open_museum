@@ -1,5 +1,6 @@
 import 'package:location/location.dart';
 import 'package:stream_value/core/stream_value.dart';
+import 'package:geocoding/geocoding.dart' as geocoding;
 
 class LocationRepository {
   final Location location = Location();
@@ -9,6 +10,8 @@ class LocationRepository {
       StreamValue<PermissionStatus?>(defaultValue: null);
   final locationDataStreamValue =
       StreamValue<LocationData?>(defaultValue: null);
+  final placeStreamValue =
+      StreamValue<String?>(defaultValue: null);
 
   bool get isPermissionGranted {
     final PermissionStatus? _currentStatus = permissionStatusStreamValue.value;
@@ -26,6 +29,11 @@ class LocationRepository {
   Future<void> getLocation() async {
     await _enableService();
     final LocationData _locationData = await location.getLocation();
+
+    List<geocoding.Placemark> placemarks =
+        await geocoding.placemarkFromCoordinates(
+            _locationData.latitude!, _locationData.longitude!);
+    placeStreamValue.addValue("${placemarks.first.street}, ${placemarks.first.subLocality}");
     locationDataStreamValue.addValue(_locationData);
   }
 
