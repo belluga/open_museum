@@ -23,6 +23,9 @@ class SocialNetworkModel {
         return Uri.parse("https://pinterest.com/${usernameValue.value}");
       case SocialNetworkTypes.instagram:
         return Uri.parse("https://instagram.com/${usernameValue.value}");
+      case SocialNetworkTypes.whatsapp:
+        return Uri.parse(
+            "https://api.whatsapp.com/send?phone=/${usernameValue.value.replaceFirst("+", "")}");
     }
   }
 
