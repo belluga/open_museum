@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:open_museum/domain/dto/author_dto.dart';
+import 'package:open_museum/domain/dto/artists_dto.dart';
 import 'package:open_museum/domain/dto/photo_dto.dart';
 
 class ArtworkDTO {
   final String id;
   final String name;
   final String? description;
-  final List<AuthorDTO> authors;
+  final List<ArtistDTO> authors;
   final List<PhotoDTO> photos;
 
   ArtworkDTO({
@@ -53,8 +53,8 @@ class ArtworkDTO {
 
     final List<PhotoDTO> _photos =
         PhotoDTO.fromJsonListTry(json["data"]?["photos"]);
-    final List<AuthorDTO> _authors =
-        AuthorDTO.fromJsonListTry(json["data"]?["authors"]);
+    final List<ArtistDTO> _authors =
+        ArtistDTO.fromJsonListTry(json["data"]?["authors"]);
 
     return ArtworkDTO(
       id: _id,

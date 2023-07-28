@@ -1,36 +1,40 @@
 import 'package:open_museum/domain/appwrite/value_objects/appwrite_object_id_value.dart';
-import 'package:open_museum/domain/author/value_objects/author_bio_value.dart';
-import 'package:open_museum/domain/author/value_objects/author_name_value.dart';
-import 'package:open_museum/domain/author/value_objects/author_website_value.dart';
+import 'package:open_museum/domain/artists/value_objects/artist_bio_value.dart';
+import 'package:open_museum/domain/artists/value_objects/artist_name_value.dart';
+import 'package:open_museum/domain/artists/value_objects/artist_store_value.dart';
+import 'package:open_museum/domain/artists/value_objects/artist_website_value.dart';
 import 'package:open_museum/domain/donation_method/donation_method_model.dart';
-import 'package:open_museum/domain/dto/author_dto.dart';
+import 'package:open_museum/domain/dto/artists_dto.dart';
 import 'package:open_museum/domain/social_network/social_network_model.dart';
 
-class AuthorModel {
+class ArtistModel {
   final AppwriteObjectIDValue objectIDValue;
-  final AuthorNameValue nameValue;
-  final AuthorWebsiteValue websiteValue;
-  final AuthorBioValue bioValue;
+  final ArtistNameValue nameValue;
+  final ArtistWebsiteValue websiteValue;
+  final ArtistStoreValue storeValue;
+  final ArtistBioValue bioValue;
   final List<DonationMethodModel> donationMethods;
   final List<SocialNetworkModel> socialNetworks;
 
-  AuthorModel({
+  ArtistModel({
     required this.bioValue,
     required this.donationMethods,
     required this.nameValue,
     required this.objectIDValue,
     required this.socialNetworks,
     required this.websiteValue,
+    required this.storeValue,
   });
 
-  factory AuthorModel.fromJson(Map<String, dynamic> json) =>
-      AuthorModel.fromDTO(AuthorDTO.fromJson(json));
+  factory ArtistModel.fromJson(Map<String, dynamic> json) =>
+      ArtistModel.fromDTO(ArtistDTO.fromJson(json));
 
-  factory AuthorModel.fromDTO(AuthorDTO dto) {
+  factory ArtistModel.fromDTO(ArtistDTO dto) {
     final _objectIDValue = AppwriteObjectIDValue()..parse(dto.id);
-    final _nameValue = AuthorNameValue()..parse(dto.name);
-    final _websiteValue = AuthorWebsiteValue()..tryParse(dto.website);
-    final _bioValue = AuthorBioValue()..tryParse(dto.bio);
+    final _nameValue = ArtistNameValue()..parse(dto.name);
+    final _websiteValue = ArtistWebsiteValue()..tryParse(dto.website);
+    final _storeValue = ArtistStoreValue()..tryParse(dto.store);
+    final _bioValue = ArtistBioValue()..tryParse(dto.bio);
     final _donationMethods = dto.donationMethods
         .map((dto) => DonationMethodModel.fromDTO(dto))
         .toList();
@@ -38,13 +42,14 @@ class AuthorModel {
         .map((dto) => SocialNetworkModel.fromDTO(dto))
         .toList();
 
-    return AuthorModel(
+    return ArtistModel(
       objectIDValue: _objectIDValue,
       bioValue: _bioValue,
       donationMethods: _donationMethods,
       nameValue: _nameValue,
       socialNetworks: _socialNetworks,
       websiteValue: _websiteValue,
+      storeValue: _storeValue,
     );
   }
 }
