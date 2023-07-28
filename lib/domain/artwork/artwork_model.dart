@@ -24,6 +24,7 @@ class ArtWorkModel {
       ArtWorkModel.fromDTO(ArtworkDTO.fromJson(json));
 
   factory ArtWorkModel.fromDTO(ArtworkDTO dto) {
+    
     return ArtWorkModel(
       objectIDValue: AppwriteObjectIDValue()..parse(dto.id),
       nameValue: ArtworkNameValue()..parse(dto.name),

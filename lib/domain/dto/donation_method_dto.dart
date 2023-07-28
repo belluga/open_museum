@@ -42,7 +42,7 @@ class DonationMethodDTO {
   }
 
   factory DonationMethodDTO.fromJson(Map<String, dynamic> json) {
-    final String _id = json["\$id"];
+    final String _id = json["_id"];
     final String _key = json["key"] ?? json['data']["key"];
     final String _type = json["type"] ?? json['data']["type"];
     final String? _keyType = json["key_type"] ?? json['data']["key_type"];

@@ -29,7 +29,7 @@ class PlaceDTO {
   }
 
   factory PlaceDTO.fromJson(Map<String, dynamic> json) {
-    final String _id = json["\$id"];
+    final String _id = json["_id"];
     final double _latitude = json['latitude'] ?? json['data']?['latitude'];
     final double _longitude = json['longitude'] ?? json['data']?['longitude'];
     final List<ArtworkDTO> _artworks =

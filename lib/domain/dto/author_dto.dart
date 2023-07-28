@@ -48,7 +48,7 @@ class AuthorDTO {
   }
 
   factory AuthorDTO.fromJson(Map<String, dynamic> json) {
-    final String _id = json["\$id"];
+    final String _id = json["_id"];
     final String _name = json['name'] ?? json['data']['name'];
     final String? _bio = json['bio'] ?? json['data']?['bio'];
     final String? _website = json['website'] ?? json['data']?['website'];

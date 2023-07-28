@@ -42,7 +42,7 @@ class PhotoDTO {
   }
 
   factory PhotoDTO.fromJson(Map<String, dynamic> json) {
-    final String _id = json["\$id"];
+    final String _id = json["_id"];
     final DateTime _createdAt = DateTime.parse(json["\$createdAt"]);
     final Uri _url = Uri.parse(json["url"] ?? json['data']["url"]);
     final String? _description = json['description'] ?? json['data']["description"];

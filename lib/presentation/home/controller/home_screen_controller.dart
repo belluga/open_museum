@@ -1,17 +1,16 @@
 import 'package:location/location.dart';
 import 'package:moduler_route/moduler_route.dart';
-import 'package:open_museum/domain/place/place_model.dart';
-import 'package:open_museum/domain/range_model.dart';
-import 'package:open_museum/infrastructure/repository/places_repository.dart';
+import 'package:open_museum/domain/artwork/artwork_model.dart';
+import 'package:open_museum/infrastructure/repository/artworks_repository.dart';
 import 'package:open_museum/infrastructure/repository/location_repository.dart';
 import 'package:stream_value/core/stream_value.dart';
 
 class HomeScreenController {
-  final _placesRepository = Inject.get<PlacesRepository>()!;
+  final _artworksRepository = Inject.get<ArtworksRepository>()!;
   final _locationRepository = Inject.get<LocationRepository>()!;
 
-  StreamValue<List<PlaceModel>?> get placesStreamValue =>
-      _placesRepository.itemsStreamValue;
+  StreamValue<List<ArtWorkModel>?> get placesStreamValue =>
+      _artworksRepository.itemsStreamValue;
 
   StreamValue<LocationData?> get locationStreamValue =>
       _locationRepository.locationDataStreamValue;
@@ -19,7 +18,8 @@ class HomeScreenController {
   StreamValue<PermissionStatus?> get permissionStatusStreamValue =>
       _locationRepository.permissionStatusStreamValue;
 
-  RangeModel get range => _placesRepository.range;
+  StreamValue<int> get maxDistanceStreamValue =>
+      _artworksRepository.maxDistanceStreamValue;
 
   bool get permissionGranted {
     switch (permissionStatusStreamValue.value) {
@@ -45,9 +45,9 @@ class HomeScreenController {
   }
 
   Future<void> initArtworks() async {
-    await _placesRepository.init();
+    await _artworksRepository.init();
   }
 
-  void setMacDistance(int? newDistance) =>
-      _placesRepository.setMaxDistance(newDistance);
+  void setMaxDistance(int newDistance) =>
+      _artworksRepository.setMaxDistance(newDistance);
 }

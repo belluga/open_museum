@@ -30,8 +30,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  appwrite: ^9.0.0
   cupertino_icons: ^1.0.2
+  http: ^1.1.0
   location: ^5.0.1
   moduler_route: ^1.3.0+1
 

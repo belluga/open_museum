@@ -40,7 +40,7 @@ class SocialNetworkDTO {
   }
 
   factory SocialNetworkDTO.fromJson(Map<String, dynamic> json) {
-    final String _id = json["\$id"];
+    final String _id = json["_id"];
     final String _username = json["username"] ?? json['data']["username"];
     final String _type = json["type"]?? json['data']["type"];
 

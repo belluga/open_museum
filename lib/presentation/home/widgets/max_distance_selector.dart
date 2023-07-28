@@ -17,28 +17,36 @@ class MaxDistanceSelector extends StatelessWidget {
       value: currentValue,
       items: const [
         DropdownMenuItem(
-          value: 5,
+          value: 1000,
+          child: Text("1 km"),
+        ),
+        DropdownMenuItem(
+          value: 5000,
           child: Text("5 km"),
         ),
         DropdownMenuItem(
-          value: 10,
+          value: 10000,
           child: Text("10 km"),
         ),
         DropdownMenuItem(
-          value: 20,
+          value: 20000,
           child: Text("20 km"),
         ),
         DropdownMenuItem(
-          value: 30,
+          value: 30000,
           child: Text("30 km"),
         ),
         DropdownMenuItem(
-          value: 40,
+          value: 40000,
           child: Text("40 km"),
         ),
         DropdownMenuItem(
-          value: 50,
+          value: 50000,
           child: Text("50 km"),
+        ),
+        DropdownMenuItem(
+          value: 50000000,
+          child: Text("50000 km"),
         ),
       ],
     );
