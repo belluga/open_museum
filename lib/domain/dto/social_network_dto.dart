@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 
 class SocialNetworkDTO {
-  final String id;
   final String type;
   final String username;
 
   SocialNetworkDTO({
-    required this.id,
     required this.type,
     required this.username,
   });
@@ -40,12 +38,10 @@ class SocialNetworkDTO {
   }
 
   factory SocialNetworkDTO.fromJson(Map<String, dynamic> json) {
-    final String _id = json["_id"];
-    final String _username = json["username"] ?? json['data']["username"];
-    final String _type = json["type"]?? json['data']["type"];
+    final String _username = json["key"];
+    final String _type = json["type"];
 
     return SocialNetworkDTO(
-      id: _id,
       username: _username,
       type: _type,
     );

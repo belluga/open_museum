@@ -1,4 +1,5 @@
 import 'package:open_museum/domain/appwrite/value_objects/appwrite_object_id_value.dart';
+import 'package:open_museum/domain/artists/value_objects/artist_alias_value.dart';
 import 'package:open_museum/domain/artists/value_objects/artist_avatar_value.dart';
 import 'package:open_museum/domain/artists/value_objects/artist_bio_value.dart';
 import 'package:open_museum/domain/artists/value_objects/artist_name_value.dart';
@@ -11,6 +12,7 @@ import 'package:open_museum/domain/social_network/social_network_model.dart';
 class ArtistModel {
   final AppwriteObjectIDValue objectIDValue;
   final ArtistNameValue nameValue;
+  final ArtistAliasValue aliasValue;
   final ArtistWebsiteValue websiteValue;
   final ArtistStoreValue storeValue;
   final ArtistAvatarValue avatarValue;
@@ -22,6 +24,7 @@ class ArtistModel {
     required this.bioValue,
     required this.donationMethods,
     required this.nameValue,
+    required this.aliasValue,
     required this.objectIDValue,
     required this.socialNetworks,
     required this.websiteValue,
@@ -35,6 +38,7 @@ class ArtistModel {
   factory ArtistModel.fromDTO(ArtistDTO dto) {
     final _objectIDValue = AppwriteObjectIDValue()..parse(dto.id);
     final _nameValue = ArtistNameValue()..parse(dto.name);
+    final _aliasValue = ArtistAliasValue()..parse(dto.alias);
     final _websiteValue = ArtistWebsiteValue()..tryParse(dto.website);
     final _avatarValue = ArtistAvatarValue()..tryParse(dto.avatar);
     final _storeValue = ArtistStoreValue()..tryParse(dto.store);
@@ -51,6 +55,7 @@ class ArtistModel {
       bioValue: _bioValue,
       donationMethods: _donationMethods,
       nameValue: _nameValue,
+      aliasValue: _aliasValue,
       socialNetworks: _socialNetworks,
       websiteValue: _websiteValue,
       storeValue: _storeValue,

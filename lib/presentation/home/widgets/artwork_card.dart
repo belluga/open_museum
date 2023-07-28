@@ -18,11 +18,11 @@ class ArtworkCard extends StatelessWidget {
                 Expanded(
                   child: Container(
                     height: 80,
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
                       image: DecorationImage(
                         fit: BoxFit.cover,
-                        image: NetworkImage(
-                            "https://cidadegraffiti.com.br/sites/contents/pics/ercilia/cidade_graffiti-ercilia.jpg"),
+                        image:
+                            NetworkImage(artwork.photos.first.value.toString()),
                       ),
                     ),
                   ),
@@ -61,7 +61,15 @@ class ArtworkCard extends StatelessWidget {
                   ),
                 ),
               ],
-            )
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Chip(
+                  label: Text(artwork.distanceValue.valueFormated),
+                ),
+              ],
+            ),
           ],
         ),
       ),

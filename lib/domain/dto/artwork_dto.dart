@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:open_museum/domain/dto/artists_dto.dart';
-import 'package:open_museum/domain/dto/photo_dto.dart';
 
 class ArtworkDTO {
   final String id;
   final String name;
-  final String? description;
+  final double distance;
   final List<ArtistDTO> authors;
-  final List<PhotoDTO> photos;
+  final List<String> photos;
+  final String? description;
 
   ArtworkDTO({
     required this.id,
     required this.name,
     required this.photos,
     required this.authors,
+    required this.distance,
     this.description,
   });
 
@@ -48,13 +49,13 @@ class ArtworkDTO {
   factory ArtworkDTO.fromJson(Map<String, dynamic> json) {
     final String _id = json["_id"];
     final String _name = json['name'] ?? json['data']['name'];
+    final double _distance = json['distance'] ?? json['data']['distance'];
     final String? _description =
         json['description'] ?? json['data']['description'];
 
-    final List<PhotoDTO> _photos =
-        PhotoDTO.fromJsonListTry(json["data"]?["photos"]);
-    final List<ArtistDTO> _authors =
-        ArtistDTO.fromJsonListTry(json["data"]?["authors"]);
+    final List<String> _photos =
+        (json["photos"] as List).map((item) => item as String).toList();
+    final List<ArtistDTO> _authors = ArtistDTO.fromJsonListTry(json["artists"]);
 
     return ArtworkDTO(
       id: _id,
@@ -62,6 +63,7 @@ class ArtworkDTO {
       description: _description,
       photos: _photos,
       authors: _authors,
+      distance: _distance,
     );
   }
 }

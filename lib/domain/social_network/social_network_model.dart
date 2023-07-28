@@ -1,16 +1,13 @@
 import 'package:open_museum/domain/dto/social_network_dto.dart';
 import 'package:open_museum/domain/social_network/enum/social_network_types.dart';
-import 'package:open_museum/domain/appwrite/value_objects/appwrite_object_id_value.dart';
 import 'package:open_museum/domain/social_network/value_objects/social_network_type_value.dart';
 import 'package:open_museum/domain/social_network/value_objects/social_network_username_value.dart';
 
 class SocialNetworkModel {
-  final AppwriteObjectIDValue objectIDValue;
   final SocialNetworkTypeValue typeValue;
   final SocialNetworkUsernameValue usernameValue;
 
   SocialNetworkModel({
-    required this.objectIDValue,
     required this.typeValue,
     required this.usernameValue,
   });
@@ -33,12 +30,10 @@ class SocialNetworkModel {
       SocialNetworkModel.fromDTO(SocialNetworkDTO.fromJson(json));
 
   factory SocialNetworkModel.fromDTO(SocialNetworkDTO dto) {
-    final _objectIDValue = AppwriteObjectIDValue()..parse(dto.id);
     final _typeValue = SocialNetworkTypeValue()..tryParse(dto.type);
     final _usernameValue = SocialNetworkUsernameValue()..tryParse(dto.username);
 
     return SocialNetworkModel(
-      objectIDValue: _objectIDValue,
       typeValue: _typeValue,
       usernameValue: _usernameValue,
     );

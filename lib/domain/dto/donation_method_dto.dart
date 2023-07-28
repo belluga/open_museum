@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 
 class DonationMethodDTO {
-  final String id;
   final String type;
   final String key;
   final String? keyType;
 
   DonationMethodDTO({
-    required this.id,
     required this.type,
     required this.key,
     this.keyType,
@@ -42,13 +40,11 @@ class DonationMethodDTO {
   }
 
   factory DonationMethodDTO.fromJson(Map<String, dynamic> json) {
-    final String _id = json["_id"];
-    final String _key = json["key"] ?? json['data']["key"];
-    final String _type = json["type"] ?? json['data']["type"];
-    final String? _keyType = json["key_type"] ?? json['data']["key_type"];
+    final String _key = json["key"];
+    final String _type = json["type"];
+    final String? _keyType = json["key_type"];
 
     return DonationMethodDTO(
-      id: _id,
       key: _key,
       type: _type,
       keyType: _keyType,
