@@ -26,7 +26,10 @@ class _ArtwotkSingleState extends State<ArtwotkSingle> {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           DirectionsButton(
-            destination: Coords(-23.62512, -46.5267),
+            destination: Coords(
+              _controller.artwork.place.latitudeValue.value,
+              _controller.artwork.place.longitudeValue.value,
+            ),
           ),
         ],
       ),
