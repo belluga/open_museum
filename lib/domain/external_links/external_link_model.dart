@@ -43,7 +43,7 @@ class ExternalLinkModel {
         return Uri.parse("https://instagram.com/${usernameValue.value}");
       case ExternalLinkTypes.whatsapp:
         return Uri.parse(
-            "https://api.whatsapp.com/send?phone=/${usernameValue.value.replaceFirst("+", "")}");
+            "https://api.whatsapp.com/send?phone=${usernameValue.value.replaceFirst("+", "")}");
       case ExternalLinkTypes.website:
         return urlValue.value!;
       case ExternalLinkTypes.store:
