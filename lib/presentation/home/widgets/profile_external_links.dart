@@ -26,7 +26,7 @@ class ProfileExternalLinks extends StatelessWidget {
 
   void _launchURL({required Uri destination}) async {
     if (await canLaunchUrl(destination)) {
-      launchUrl(destination);
+      launchUrl(destination, mode: LaunchMode.externalApplication);
     }
   }
 }
