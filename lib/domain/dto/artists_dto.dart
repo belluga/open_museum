@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:open_museum/domain/dto/donation_method_dto.dart';
-import 'package:open_museum/domain/dto/social_network_dto.dart';
+import 'package:open_museum/domain/dto/external_link_dto.dart';
 
 class ArtistDTO {
   final String id;
@@ -11,13 +11,13 @@ class ArtistDTO {
   final String? store;
   final String? avatar;
   final List<DonationMethodDTO> donationMethods;
-  final List<SocialNetworkDTO> socialNetworks;
+  final List<ExternalLinkDTO> externalLinks;
 
   ArtistDTO({
     required this.id,
     required this.name,
     required this.donationMethods,
-    required this.socialNetworks,
+    required this.externalLinks,
     this.alias,
     this.bio,
     this.website,
@@ -65,8 +65,8 @@ class ArtistDTO {
     final List<DonationMethodDTO> _donationMethods =
         DonationMethodDTO.fromJsonListTry(json["donationMethods"]);
 
-    final List<SocialNetworkDTO> _socialNetworks =
-        SocialNetworkDTO.fromJsonListTry(json["socialNetworks"]);
+    final List<ExternalLinkDTO> _externalLinks =
+        ExternalLinkDTO.fromJsonListTry(json["external_links"]);
 
     return ArtistDTO(
       id: _id,
@@ -74,7 +74,7 @@ class ArtistDTO {
       alias: _alias,
       bio: _bio,
       donationMethods: _donationMethods,
-      socialNetworks: _socialNetworks,
+      externalLinks: _externalLinks,
       website: _website,
       store: _store,
       avatar: _avatar,

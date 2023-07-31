@@ -3,22 +3,18 @@ import 'package:open_museum/domain/artists/value_objects/artist_alias_value.dart
 import 'package:open_museum/domain/artists/value_objects/artist_avatar_value.dart';
 import 'package:open_museum/domain/artists/value_objects/artist_bio_value.dart';
 import 'package:open_museum/domain/artists/value_objects/artist_name_value.dart';
-import 'package:open_museum/domain/artists/value_objects/artist_store_value.dart';
-import 'package:open_museum/domain/artists/value_objects/artist_website_value.dart';
 import 'package:open_museum/domain/donation_method/donation_method_model.dart';
 import 'package:open_museum/domain/dto/artists_dto.dart';
-import 'package:open_museum/domain/social_network/social_network_model.dart';
+import 'package:open_museum/domain/external_links/external_link_model.dart';
 
 class ArtistModel {
   final AppwriteObjectIDValue objectIDValue;
   final ArtistNameValue nameValue;
   final ArtistAliasValue aliasValue;
-  final ArtistWebsiteValue websiteValue;
-  final ArtistStoreValue storeValue;
   final ArtistAvatarValue avatarValue;
   final ArtistBioValue bioValue;
   final List<DonationMethodModel> donationMethods;
-  final List<SocialNetworkModel> socialNetworks;
+  final List<ExternalLinkModel> externalLinks;
 
   ArtistModel({
     required this.bioValue,
@@ -26,9 +22,7 @@ class ArtistModel {
     required this.nameValue,
     required this.aliasValue,
     required this.objectIDValue,
-    required this.socialNetworks,
-    required this.websiteValue,
-    required this.storeValue,
+    required this.externalLinks,
     required this.avatarValue,
   });
 
@@ -39,15 +33,13 @@ class ArtistModel {
     final _objectIDValue = AppwriteObjectIDValue()..parse(dto.id);
     final _nameValue = ArtistNameValue()..parse(dto.name);
     final _aliasValue = ArtistAliasValue()..tryParse(dto.alias);
-    final _websiteValue = ArtistWebsiteValue()..tryParse(dto.website);
     final _avatarValue = ArtistAvatarValue()..tryParse(dto.avatar);
-    final _storeValue = ArtistStoreValue()..tryParse(dto.store);
     final _bioValue = ArtistBioValue()..tryParse(dto.bio);
     final _donationMethods = dto.donationMethods
         .map((dto) => DonationMethodModel.fromDTO(dto))
         .toList();
-    final _socialNetworks = dto.socialNetworks
-        .map((dto) => SocialNetworkModel.fromDTO(dto))
+    final _externalLinks = dto.externalLinks
+        .map((dto) => ExternalLinkModel.fromDTO(dto))
         .toList();
 
     return ArtistModel(
@@ -56,9 +48,7 @@ class ArtistModel {
         donationMethods: _donationMethods,
         nameValue: _nameValue,
         aliasValue: _aliasValue,
-        socialNetworks: _socialNetworks,
-        websiteValue: _websiteValue,
-        storeValue: _storeValue,
+        externalLinks: _externalLinks,
         avatarValue: _avatarValue);
   }
 

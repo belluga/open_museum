@@ -81,8 +81,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     return Expanded(
                       child: Column(
                         children: [
-                          SizedBox(height: 16),
-                          Row(
+                          const SizedBox(height: 16),
+                          const Row(
                             children: [
                               Text("Artistas"),
                             ],
@@ -91,8 +91,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             artists: _controller.artistsAll,
                             size: 80,
                           ),
-                          SizedBox(height: 16),
-                          Row(
+                          const SizedBox(height: 16),
+                          const Row(
                             children: [
                               Text("Obras"),
                             ],
