@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:location/location.dart';
 import 'package:moduler_route/moduler_route.dart';
 import 'package:open_museum/application/modules/home_module.dart';
-import 'package:open_museum/presentation/location_permission/controllers/location_getting_controller.dart';
+import 'package:open_museum/application/controllers/location_permission/location_getting_controller.dart';
 import 'package:stream_value/core/stream_value_builder.dart';
 
 class LocationGetting extends StatefulWidget {

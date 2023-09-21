@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moduler_route/moduler_route.dart';
-import 'package:open_museum/presentation/home/controller/splash_screen_controller.dart';
+import 'package:open_museum/application/controllers/home/splash_screen_controller.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

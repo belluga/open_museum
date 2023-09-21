@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:map_launcher/map_launcher.dart';
 import 'package:masonry_grid/masonry_grid.dart';
 import 'package:moduler_route/moduler_route.dart';
-import 'package:open_museum/application/common/artists_row.dart';
-import 'package:open_museum/application/common/directions_button/directions_button.dart';
-import 'package:open_museum/presentation/home/controller/artwork_single_controller.dart';
+import 'package:open_museum/presentation/shared_widgets/artists_row.dart';
+import 'package:open_museum/presentation/shared_widgets/directions_button/directions_button.dart';
+import 'package:open_museum/application/controllers/home/artwork_single_controller.dart';
 
 class ArtwotkSingle extends StatefulWidget {
   const ArtwotkSingle({super.key});

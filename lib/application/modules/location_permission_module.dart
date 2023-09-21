@@ -1,7 +1,7 @@
 import 'package:moduler_route/moduler_route.dart';
 import 'package:open_museum/presentation/location_permission/ask_location_permission.dart';
-import 'package:open_museum/presentation/location_permission/controllers/ask_location_permission_controller.dart';
-import 'package:open_museum/presentation/location_permission/controllers/location_getting_controller.dart';
+import 'package:open_museum/application/controllers/location_permission/ask_location_permission_controller.dart';
+import 'package:open_museum/application/controllers/location_permission/location_getting_controller.dart';
 import 'package:open_museum/presentation/location_permission/location_getting_page.dart';
 
 class LocationPermissionModule extends Module {

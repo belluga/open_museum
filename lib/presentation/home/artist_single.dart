@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moduler_route/moduler_route.dart';
-import 'package:open_museum/presentation/home/controller/artist_single_controller.dart';
+import 'package:open_museum/application/controllers/home/artist_single_controller.dart';
 import 'package:open_museum/presentation/home/widgets/profile_external_links.dart';
 
 class ArtistSingle extends StatefulWidget {

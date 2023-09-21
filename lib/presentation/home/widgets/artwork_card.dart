@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:open_museum/application/common/artists_row.dart';
+import 'package:open_museum/presentation/shared_widgets/artists_row.dart';
 import 'package:open_museum/application/modules/home_module.dart';
-import 'package:open_museum/domain/artwork/artwork_model.dart';
-import 'package:open_museum/domain/navigation_arguments/artwork_single_arguments.dart';
+import 'package:open_museum/domain/entities/artwork_model.dart';
+import 'package:open_museum/application/view_model/navigation_arguments/artwork_single_arguments.dart';
 
 class ArtworkCard extends StatefulWidget {
   final ArtWorkModel artwork;

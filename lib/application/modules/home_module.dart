@@ -1,12 +1,12 @@
 import 'package:moduler_route/moduler_route.dart';
-import 'package:open_museum/domain/navigation_arguments/artist_single_arguments.dart';
-import 'package:open_museum/domain/navigation_arguments/artwork_single_arguments.dart';
+import 'package:open_museum/application/view_model/navigation_arguments/artist_single_arguments.dart';
+import 'package:open_museum/application/view_model/navigation_arguments/artwork_single_arguments.dart';
 import 'package:open_museum/presentation/home/artist_single.dart';
 import 'package:open_museum/presentation/home/artwork_single.dart';
-import 'package:open_museum/presentation/home/controller/artist_single_controller.dart';
-import 'package:open_museum/presentation/home/controller/artwork_single_controller.dart';
-import 'package:open_museum/presentation/home/controller/home_screen_controller.dart';
-import 'package:open_museum/presentation/home/controller/splash_screen_controller.dart';
+import 'package:open_museum/application/controllers/home/artist_single_controller.dart';
+import 'package:open_museum/application/controllers/home/artwork_single_controller.dart';
+import 'package:open_museum/application/controllers/home/home_screen_controller.dart';
+import 'package:open_museum/application/controllers/home/splash_screen_controller.dart';
 import 'package:open_museum/presentation/home/home_screen.dart';
 import 'package:open_museum/presentation/home/splash_screen.dart';
 

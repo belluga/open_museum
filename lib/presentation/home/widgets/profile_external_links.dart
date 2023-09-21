@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:open_museum/domain/external_links/external_link_model.dart';
+import 'package:open_museum/domain/entities/external_link_model.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ProfileExternalLinks extends StatelessWidget {

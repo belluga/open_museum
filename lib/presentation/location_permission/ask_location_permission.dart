@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:location/location.dart';
 import 'package:moduler_route/moduler_route.dart';
 import 'package:open_museum/application/modules/location_permission_module.dart';
-import 'package:open_museum/presentation/location_permission/controllers/ask_location_permission_controller.dart';
+import 'package:open_museum/application/controllers/location_permission/ask_location_permission_controller.dart';
 
 class AskLocationPermission extends StatefulWidget {
   const AskLocationPermission({super.key});

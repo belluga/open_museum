@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:moduler_route/moduler_route.dart';
-import 'package:open_museum/application/common/artists_row.dart';
-import 'package:open_museum/domain/artwork/artwork_model.dart';
-import 'package:open_museum/presentation/home/controller/home_screen_controller.dart';
+import 'package:open_museum/presentation/shared_widgets/artists_row.dart';
+import 'package:open_museum/domain/entities/artwork_model.dart';
+import 'package:open_museum/application/controllers/home/home_screen_controller.dart';
 import 'package:open_museum/presentation/home/widgets/artwork_card.dart';
 import 'package:open_museum/presentation/home/widgets/max_distance_selector.dart';
 import 'package:stream_value/core/stream_value_builder.dart';
