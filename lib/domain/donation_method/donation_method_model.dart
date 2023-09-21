@@ -1,7 +1,6 @@
 import 'package:open_museum/domain/donation_method/value_objects/donation_method_key_type_value.dart';
 import 'package:open_museum/domain/donation_method/value_objects/donation_method_key_value.dart';
 import 'package:open_museum/domain/donation_method/value_objects/donation_method_type_value.dart';
-import 'package:open_museum/domain/dto/donation_method_dto.dart';
 
 class DonationMethodModel {
   final DonationMethodTypeValue typeValue;
@@ -13,21 +12,4 @@ class DonationMethodModel {
     required this.keyType,
     required this.typeValue,
   });
-
-  factory DonationMethodModel.fromJson(Map<String, dynamic> json) =>
-      DonationMethodModel.fromDTO(DonationMethodDTO.fromJson(json));
-
-  factory DonationMethodModel.fromDTO(DonationMethodDTO dto) {
-    final _typeValue = DonationMethodTypeValue(defaultValue: null)
-      ..tryParse(dto.type);
-    final _keyTypeValue = DonationMethodKeyTypeValue(defaultValue: null)
-      ..tryParse(dto.keyType);
-    final _keyValue = DonationMethodKeyValue()..tryParse(dto.key);
-
-    return DonationMethodModel(
-      key: _keyValue,
-      keyType: _keyTypeValue,
-      typeValue: _typeValue,
-    );
-  }
 }

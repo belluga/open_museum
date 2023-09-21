@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:open_museum/domain/place/place_model.dart';
+import 'package:open_museum/domain/place/value_objects/latitude_value.dart';
+import 'package:open_museum/domain/place/value_objects/longitude_value.dart';
 
 class PlaceDTO {
   final double latitude;
@@ -8,6 +11,18 @@ class PlaceDTO {
     required this.latitude,
     required this.longitude,
   });
+
+  PlaceModel toDomain() {
+    final _latitudeValue = LatitudeValue(defaultValue: latitude)
+      ..parse(latitude.toString());
+    final _longitudeValue = LongitudeValue(defaultValue: longitude)
+      ..parse(longitude.toString());
+
+    return PlaceModel(
+      latitudeValue: _latitudeValue,
+      longitudeValue: _longitudeValue,
+    );
+  }
 
   static PlaceDTO? fromJsonTry(Map<String, dynamic>? json) {
     if (json == null) {

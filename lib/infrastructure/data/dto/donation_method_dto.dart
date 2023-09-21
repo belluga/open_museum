@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:open_museum/domain/donation_method/donation_method_model.dart';
+import 'package:open_museum/domain/donation_method/value_objects/donation_method_key_type_value.dart';
+import 'package:open_museum/domain/donation_method/value_objects/donation_method_key_value.dart';
+import 'package:open_museum/domain/donation_method/value_objects/donation_method_type_value.dart';
 
 class DonationMethodDTO {
   final String type;
@@ -10,6 +14,20 @@ class DonationMethodDTO {
     required this.key,
     this.keyType,
   });
+
+  DonationMethodModel toDomain() {
+    final _typeValue = DonationMethodTypeValue(defaultValue: null)
+      ..tryParse(type);
+    final _keyTypeValue = DonationMethodKeyTypeValue(defaultValue: null)
+      ..tryParse(keyType);
+    final _keyValue = DonationMethodKeyValue()..tryParse(key);
+
+    return DonationMethodModel(
+      key: _keyValue,
+      keyType: _keyTypeValue,
+      typeValue: _typeValue,
+    );
+  }
 
   static List<DonationMethodDTO> fromJsonListTry(List? jsonList) {
     if (jsonList == null || jsonList.isEmpty) {

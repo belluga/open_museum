@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:open_museum/domain/dto/donation_method_dto.dart';
-import 'package:open_museum/domain/dto/external_link_dto.dart';
+import 'package:open_museum/domain/appwrite/value_objects/appwrite_object_id_value.dart';
+import 'package:open_museum/domain/artists/artist_model.dart';
+import 'package:open_museum/domain/artists/value_objects/artist_alias_value.dart';
+import 'package:open_museum/domain/artists/value_objects/artist_avatar_value.dart';
+import 'package:open_museum/domain/artists/value_objects/artist_bio_value.dart';
+import 'package:open_museum/domain/artists/value_objects/artist_name_value.dart';
+import 'package:open_museum/infrastructure/data/dto/donation_method_dto.dart';
+import 'package:open_museum/infrastructure/data/dto/external_link_dto.dart';
 
 class ArtistDTO {
   final String id;
@@ -24,6 +30,26 @@ class ArtistDTO {
     this.store,
     this.avatar,
   });
+
+  ArtistModel toDomain() {
+    final _objectIDValue = AppwriteObjectIDValue()..parse(id);
+    final _nameValue = ArtistNameValue()..parse(name);
+    final _aliasValue = ArtistAliasValue()..tryParse(alias);
+    final _avatarValue = ArtistAvatarValue()..tryParse(avatar);
+    final _bioValue = ArtistBioValue()..tryParse(bio);
+    final _donationMethods =
+        donationMethods.map((dto) => dto.toDomain()).toList();
+    final _externalLinks = externalLinks.map((dto) => dto.toDomain()).toList();
+
+    return ArtistModel(
+        objectIDValue: _objectIDValue,
+        bioValue: _bioValue,
+        donationMethods: _donationMethods,
+        nameValue: _nameValue,
+        aliasValue: _aliasValue,
+        externalLinks: _externalLinks,
+        avatarValue: _avatarValue);
+  }
 
   static List<ArtistDTO> fromJsonListTry(List? jsonList) {
     if (jsonList == null || jsonList.isEmpty) {

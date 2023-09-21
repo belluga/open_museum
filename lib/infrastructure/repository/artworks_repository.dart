@@ -6,6 +6,7 @@ import 'package:open_museum/application/configs/mongodb_constants.dart';
 import 'package:open_museum/domain/artists/artist_model.dart';
 import 'package:open_museum/domain/artwork/artwork_model.dart';
 import 'package:open_museum/domain/repository/repository_paginated_appwrite_contract.dart';
+import 'package:open_museum/infrastructure/data/dto/artwork_dto.dart';
 import 'package:open_museum/infrastructure/repository/location_repository.dart';
 import 'package:open_museum/infrastructure/repository/mongodb_aggregations.dart';
 import 'package:stream_value/core/stream_value.dart';
@@ -79,7 +80,7 @@ class ArtworksRepository
       totalPages = 1;
 
       final List<ArtWorkModel> _placeItems =
-          _documentList.map((e) => ArtWorkModel.fromJson(e)).toList();
+          _documentList.map((e) => ArtworkDTO.fromJson(e).toDomain()).toList();
 
       return Future.value(_placeItems);
     } catch (e, stack) {

@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:open_museum/domain/dto/artists_dto.dart';
-import 'package:open_museum/domain/dto/place_dto.dart';
+import 'package:open_museum/domain/appwrite/value_objects/appwrite_object_id_value.dart';
+import 'package:open_museum/domain/artwork/artwork_model.dart';
+import 'package:open_museum/domain/artwork/value_objects/artwork_description_value.dart';
+import 'package:open_museum/domain/artwork/value_objects/artwork_distance_value.dart';
+import 'package:open_museum/domain/artwork/value_objects/artwork_name_value.dart';
+import 'package:open_museum/domain/artwork/value_objects/artwork_photo_value.dart';
+import 'package:open_museum/infrastructure/data/dto/artists_dto.dart';
+import 'package:open_museum/infrastructure/data/dto/place_dto.dart';
 
 class ArtworkDTO {
   final String id;
@@ -20,6 +26,18 @@ class ArtworkDTO {
     required this.place,
     this.description,
   });
+
+  ArtWorkModel toDomain() {
+    return ArtWorkModel(
+      objectIDValue: AppwriteObjectIDValue()..parse(id),
+      nameValue: ArtworkNameValue()..parse(name),
+      distanceValue: ArtworkDistanceValue(defaultValue: distance),
+      descriptionValue: ArtworkDescriptionValue()..tryParse(description),
+      artists: authors.map((dto) => dto.toDomain()).toList(),
+      photos: photos.map((dto) => ArtworkPhotoValue()..parse(dto)).toList(),
+      place: place.toDomain(),
+    );
+  }
 
   static List<ArtworkDTO> fromJsonListTry(List? jsonList) {
     if (jsonList == null || jsonList.isEmpty) {

@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:open_museum/domain/external_links/external_link_model.dart';
+import 'package:open_museum/domain/external_links/value_objects/external_link_type_value.dart';
+import 'package:open_museum/domain/external_links/value_objects/external_link_url.dart';
+import 'package:open_museum/domain/external_links/value_objects/external_link_username_value.dart';
 
 class ExternalLinkDTO {
   final String type;
@@ -11,6 +15,18 @@ class ExternalLinkDTO {
     this.url,
   }) : assert(username != null || url != null,
             "Either username or url should not be null.");
+
+  ExternalLinkModel toDomain() {
+    final _typeValue = ExternalLinkTypeValue()..parse(type);
+    final _usernameValue = ExternalLinkUsernameValue()..tryParse(username);
+    final _urlValue = ExternalLinkUrlValue()..tryParse(url);
+
+    return ExternalLinkModel(
+      typeValue: _typeValue,
+      usernameValue: _usernameValue,
+      urlValue: _urlValue,
+    );
+  }
 
   static List<ExternalLinkDTO> fromJsonListTry(List? jsonList) {
     if (jsonList == null || jsonList.isEmpty) {

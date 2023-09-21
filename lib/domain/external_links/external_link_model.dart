@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:open_museum/domain/dto/external_link_dto.dart';
 import 'package:open_museum/domain/external_links/enum/external_link_types.dart';
 import 'package:open_museum/domain/external_links/value_objects/external_link_type_value.dart';
 import 'package:open_museum/domain/external_links/value_objects/external_link_url.dart';
@@ -49,20 +48,5 @@ class ExternalLinkModel {
       case ExternalLinkTypes.store:
         return urlValue.value!;
     }
-  }
-
-  factory ExternalLinkModel.fromJson(Map<String, dynamic> json) =>
-      ExternalLinkModel.fromDTO(ExternalLinkDTO.fromJson(json));
-
-  factory ExternalLinkModel.fromDTO(ExternalLinkDTO dto) {
-    final _typeValue = ExternalLinkTypeValue()..parse(dto.type);
-    final _usernameValue = ExternalLinkUsernameValue()..tryParse(dto.username);
-    final _urlValue = ExternalLinkUrlValue()..tryParse(dto.url);
-
-    return ExternalLinkModel(
-      typeValue: _typeValue,
-      usernameValue: _usernameValue,
-      urlValue: _urlValue,
-    );
   }
 }
